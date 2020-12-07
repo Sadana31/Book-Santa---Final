@@ -3,9 +3,10 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {DrawerItems} from 'react-navigation-drawer';
 import firebase from 'firebase';
 import { render } from 'react-dom';
-import {Avatar} from "react-native-elements";
+import {Avatar,Icon} from "react-native-elements";
 import * as ImagePicker from 'expo-image-picker';
 import db from '../config';
+import {RFValue} from 'react-native-responsive-fontsize';
 
 export default class CustomSideBarMenu extends Component{
     state = {
@@ -84,7 +85,7 @@ export default class CustomSideBarMenu extends Component{
     render(){
         return(
             <View style = {styles.container}>
-              <View style={{flex:0.3, alignItems:"center", backgroundColor:"orange"}}>
+              <View style={{flex:0.3, alignItems:"center", backgroundColor:"#32867d"}}>
               <Avatar
                 rounded
                 source={{
@@ -104,10 +105,16 @@ export default class CustomSideBarMenu extends Component{
                 <View style={styles.logOutContainer}>
                     <TouchableOpacity style = {styles.logOutButton}
                         onPress={()=>{
-                            this.props.navigation.navigate('WelcomeScreen')
-                            firebase.auth().signOut()
+                            this.props.navigation.navigate('WelcomeScreen');
+                            firebase.auth().signOut();
                         }}>
-                            <Text>Log Out</Text>
+                            <Icon
+                             name="logout" type="antdesign" size={RFValue(20)}
+                             iconStyle={{paddingLeft: RFValue(10)}}/>
+                            <Text 
+                            style={{fontSize: RFValue(15), fontWeight: "bold", marginLeft: RFValue(30)}}>
+                              Log Out
+                              </Text>
                         </TouchableOpacity>
 
                 </View>
@@ -115,7 +122,7 @@ export default class CustomSideBarMenu extends Component{
         )
     }
 }
-
+//rfvalue
 var styles = StyleSheet.create({
   container: {
     flex: 1,

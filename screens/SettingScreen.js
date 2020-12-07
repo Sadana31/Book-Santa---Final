@@ -11,6 +11,8 @@ import {
 import MyHeader from '../components/MyHeader'
 import db from '../config'
 import firebase from 'firebase'
+import {RFValue} from 'react-native-responsive-fontsize';
+import {Icon, Card} from 'react-native-elements';
 
 export default class SettingScreen extends Component{
   constructor(){
@@ -66,6 +68,8 @@ export default class SettingScreen extends Component{
       <View style={styles.container} >
         <MyHeader title="Settings" navigation={this.props.navigation}/>
         <View style={styles.formContainer}>
+            <View style={{flex: 0.66, padding:RFValue(10)}}>
+              <Text style={styles.label}>FIRST NAME</Text>
             <TextInput
               style={styles.formTextInput}
               placeholder ={"First Name"}
@@ -77,6 +81,7 @@ export default class SettingScreen extends Component{
               }}
               value ={this.state.firstName}
             />
+            <Text style={styles.label}>LAST NAME</Text>
             <TextInput
               style={styles.formTextInput}
               placeholder ={"Last Name"}
@@ -88,6 +93,7 @@ export default class SettingScreen extends Component{
               }}
                 value ={this.state.lastName}
             />
+            <Text style={styles.label}>CONTACT</Text>
             <TextInput
               style={styles.formTextInput}
               placeholder ={"Contact"}
@@ -100,6 +106,7 @@ export default class SettingScreen extends Component{
               }}
                 value ={this.state.contact}
             />
+            <Text style={styles.label}>ADDRESS</Text>
             <TextInput
               style={styles.formTextInput}
               placeholder ={"Address"}
@@ -111,12 +118,15 @@ export default class SettingScreen extends Component{
               }}
                 value ={this.state.address}
             />
-            <TouchableOpacity style={styles.button}
-              onPress={()=>{
-                this.updateUserDetails()
-              }}>
-              <Text style={styles.buttonText}>Save</Text>
-            </TouchableOpacity>
+            </View>
+            <View style={styles.buttonView}>
+              <TouchableOpacity style={styles.button}
+                onPress={()=>{
+                  this.updateUserDetails();
+                }}>
+                <Text style={styles.buttonText}>Save</Text>
+              </TouchableOpacity>
+            </View>
         </View>
       </View>
     )
@@ -125,46 +135,58 @@ export default class SettingScreen extends Component{
 
 
 const styles = StyleSheet.create({
-  container : {
-    flex:1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor:"#6fc0b8"
   },
   formContainer:{
-    flex:1,
-    width:'100%',
-    alignItems: 'center'
+    flex: 0.88,
+    justifyContent:'center'
   },
-  formTextInput:{
-    width:"75%",
-    height:35,
-    alignSelf:'center',
-    borderColor:'#ffab91',
-    borderRadius:10,
+  label:{
+    fontSize:RFValue(18),
+    color:"#717D7E",
+    fontWeight:'bold',
+    padding:RFValue(10),
+    marginLeft:RFValue(20)
+  },
+  formTextInput: {
+    width: "90%",
+    height: RFValue(50),
+    padding: RFValue(10),
     borderWidth:1,
-    marginTop:20,
-    padding:10,
+    borderRadius:2,
+    borderColor:"grey",
+    marginBottom:RFValue(20),
+    marginLeft:RFValue(20)
   },
-  button:{
-    width:"75%",
-    height:50,
-    justifyContent:'center',
-    alignItems:'center',
-    borderRadius:10,
-    backgroundColor:"#ff5722",
+  button: {
+    width: "75%",
+    height: RFValue(60),
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: RFValue(50),
+    backgroundColor: "#32867d",
     shadowColor: "#000",
     shadowOffset: {
-       width: 0,
-       height: 8,
+      width: 0,
+      height: 8,
     },
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 16,
-    marginTop:20
+    marginTop: RFValue(20),
   },
-  buttonText:{
-    fontSize:25,
-    fontWeight:"bold",
-    color:"#fff"
-  }
-})
+  buttonView:{
+    flex: 0.22,
+    alignItems: "center",
+    marginTop:RFValue(100)
+},
+  buttonText: {
+    fontSize: RFValue(23),
+    fontWeight: "bold",
+    color: "#fff",
+  },
+});
